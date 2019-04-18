@@ -7,9 +7,21 @@
 > https://blankj.com/2018/12/18/android-adapt-screen-killer/
 > https://juejin.im/post/5c18039d5188253b7e74987e
 
+## 添加依赖
+```gradle
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 
+	dependencies {
+	        implementation 'com.github.licheedev:AdaptScreen:0.1'
+	}
+```
 
-使用参考
+## 使用参考
 ```java
 public class BaseActivity extends RxAppCompatActivity {
 
@@ -119,3 +131,7 @@ public class BaseActivity extends RxAppCompatActivity {
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
 ```
+
+## 测试截图
+![竖屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-04-18-113445.png)
+![横屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-04-18-113522.png)
