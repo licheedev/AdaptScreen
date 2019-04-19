@@ -39,7 +39,7 @@ public class BaseActivity extends RxAppCompatActivity {
      */
     protected Resources toModifyResource(Resources originalResources) {
         // 建议先在Application里面初始化  AdaptScreenUtils.init(context);
-        return AdaptScreenUtils.adaptShorter(originalResources, 750);
+        return AdaptScreenUtils.adaptShorter(originalResources, 1080);
     }
 }
 ```
