@@ -18,7 +18,7 @@ public class BaseActivity extends AppCompatActivity {
      * @return
      */
     protected Resources toModifyResource(Resources originalResources) {
-        // 建议先在Application里面初始化  AdaptScreenUtils.init(context);
-        return AdaptScreenUtils.adaptShorter(originalResources, 1080);
+        // 建议先在Application里面初始化  AdaptScreenEx.init(context);
+        return AdaptScreenEx.adaptShorter(originalResources, 1080);
     }
 }

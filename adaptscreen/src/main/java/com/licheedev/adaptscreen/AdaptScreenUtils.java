@@ -1,156 +1,137 @@
 package com.licheedev.adaptscreen;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * 屏幕适配工具
- * <a href="https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md#adaptscreen-%E7%9B%B8%E5%85%B3---adaptscreenutilsjava---demo">查看原始代码</a>
- * 增加了适配较长/较短边功能
- */
-public final class AdaptScreenUtils {
+final class AdaptScreenUtils {
 
-    private static boolean isInitMiui = false;
-    private static Field mTmpMetricsField;
-    private static Context sApplication;
+    private static List<Field> sMetricsFields;
 
     /**
-     * 初始化
-     *
-     * @param context
+     * Adapt for the horizontal screen, and call it in [android.app.Activity.getResources].
      */
-    public static void init(Context context) {
-        sApplication = context.getApplicationContext();
-    }
-
-    /**
-     * 针对屏幕“当前水平方向的尺寸”进行适配，重写{@link Activity#getResources()} 方法，调用此方法后返回
-     *
-     * @param resources 填入super.getResources()
-     * @param designWidth 参考尺寸
-     */
-    public static Resources adaptWidth(Resources resources, int designWidth) {
-        DisplayMetrics dm = getDisplayMetrics(resources);
-
-        int width = dm.widthPixels;
-        float newXdpi = dm.xdpi = (width * 72f) / designWidth;
-        setAppDmXdpi(newXdpi);
+    public static Resources adaptWidth(final Resources resources, final int designWidth) {
+        float newXdpi = (resources.getDisplayMetrics().widthPixels * 72f) / designWidth;
+        applyDisplayMetrics(resources, newXdpi);
         return resources;
     }
 
     /**
-     * 针对屏幕“较短边”进行适配，重写{@link Activity#getResources()} 方法，调用此方法后返回
-     *
-     * @param resources 填入super.getResources()
-     * @param designShortSize 参考UI图的较短边尺寸
+     * Adapt for the vertical screen, and call it in [android.app.Activity.getResources].
      */
-    public static Resources adaptShorter(Resources resources, int designShortSize) {
-        DisplayMetrics dm = getDisplayMetrics(resources);
+    public static Resources adaptHeight(final Resources resources, final int designHeight) {
+        return adaptHeight(resources, designHeight, false);
+    }
 
-        int width = dm.widthPixels < dm.heightPixels ? dm.widthPixels : dm.heightPixels;
-        float newXdpi = dm.xdpi = (width * 72f) / designShortSize;
-        setAppDmXdpi(newXdpi);
+    /**
+     * Adapt for the vertical screen, and call it in [android.app.Activity.getResources].
+     */
+    public static Resources adaptHeight(final Resources resources, final int designHeight,
+        final boolean includeNavBar) {
+        float screenHeight =
+            resources.getDisplayMetrics().heightPixels * 72f + (includeNavBar ? getNavBarHeight(
+                resources) : 0);
+        float newXdpi = screenHeight / designHeight;
+        applyDisplayMetrics(resources, newXdpi);
+        return resources;
+    }
+
+    static int getNavBarHeight(final Resources resources) {
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId != 0) {
+            return resources.getDimensionPixelSize(resourceId);
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * @param resources The resources.
+     * @return the resource
+     */
+    public static Resources closeAdapt(final Resources resources) {
+        float newXdpi = Resources.getSystem().getDisplayMetrics().density * 72f;
+        applyDisplayMetrics(resources, newXdpi);
         return resources;
     }
 
     /**
-     * 针对屏幕“当前水平方向的尺寸”进行适配，重写{@link Activity#getResources()} 方法，调用此方法后返回
+     * Value of pt to value of px.
      *
-     * @param resources 填入super.getResources()
-     * @param designHeight 参考尺寸
+     * @param ptValue The value of pt.
+     * @return value of px
      */
-    public static Resources adaptHeight(Resources resources, int designHeight) {
-        DisplayMetrics dm = getDisplayMetrics(resources);
-        int height = dm.heightPixels;
-        float newXdpi = dm.xdpi = (height * 72f) / designHeight;
-        setAppDmXdpi(newXdpi);
-        return resources;
-    }
-
-    /**
-     * 针对屏幕“较长边”进行适配，重写{@link Activity#getResources()} 方法，调用此方法后返回
-     *
-     * @param resources 填入super.getResources()
-     * @param designLongerSize 参考UI图的较长边尺寸
-     */
-    public static Resources adaptLonger(Resources resources, int designLongerSize) {
-        DisplayMetrics dm = getDisplayMetrics(resources);
-        int height = dm.heightPixels > dm.widthPixels ? dm.heightPixels : dm.widthPixels;
-        float newXdpi = dm.xdpi = (height * 72f) / designLongerSize;
-        setAppDmXdpi(newXdpi);
-        return resources;
-    }
-
-    /**
-     * 取消适配
-     * 重写{@link Activity#getResources()} 方法，调用此方法后返回
-     *
-     * @param resources 填入super.getResources()
-     */
-    public static Resources closeAdapt(Resources resources) {
-        DisplayMetrics dm = getDisplayMetrics(resources);
-        float newXdpi = dm.xdpi = dm.density * 72;
-        setAppDmXdpi(newXdpi);
-        return resources;
-    }
-
-    /**
-     * pt转px
-     *
-     * @param ptValue pt
-     * @return px
-     */
-    public static int pt2Px(float ptValue) {
-        DisplayMetrics metrics = sApplication.getResources().getDisplayMetrics();
+    public static int pt2Px(final float ptValue) {
+        DisplayMetrics metrics = AdaptScreenEx.getApp().getResources().getDisplayMetrics();
         return (int) (ptValue * metrics.xdpi / 72f + 0.5);
     }
 
     /**
-     * px转
+     * Value of px to value of pt.
      *
-     * @param pxValue px
-     * @return pt
+     * @param pxValue The value of px.
+     * @return value of pt
      */
-    public static int px2Pt(float pxValue) {
-        DisplayMetrics metrics = sApplication.getResources().getDisplayMetrics();
+    public static int px2Pt(final float pxValue) {
+        DisplayMetrics metrics = AdaptScreenEx.getApp().getResources().getDisplayMetrics();
         return (int) (pxValue * 72 / metrics.xdpi + 0.5);
     }
 
-    private static void setAppDmXdpi(final float xdpi) {
-        sApplication.getResources().getDisplayMetrics().xdpi = xdpi;
+    static void applyDisplayMetrics(final Resources resources, final float newXdpi) {
+        resources.getDisplayMetrics().xdpi = newXdpi;
+        AdaptScreenEx.getApp().getResources().getDisplayMetrics().xdpi = newXdpi;
+        applyOtherDisplayMetrics(resources, newXdpi);
     }
 
-    private static DisplayMetrics getDisplayMetrics(Resources resources) {
-        DisplayMetrics miuiDisplayMetrics = getMiuiTmpMetrics(resources);
-        if (miuiDisplayMetrics == null) return resources.getDisplayMetrics();
-        return miuiDisplayMetrics;
-    }
-
-    private static DisplayMetrics getMiuiTmpMetrics(Resources resources) {
-        if (!isInitMiui) {
-            DisplayMetrics ret = null;
-            String simpleName = resources.getClass().getSimpleName();
-            if ("MiuiResources".equals(simpleName) || "XResources".equals(simpleName)) {
-                try {
-                    //noinspection JavaReflectionMemberAccess
-                    mTmpMetricsField = Resources.class.getDeclaredField("mTmpMetrics");
-                    mTmpMetricsField.setAccessible(true);
-                    ret = (DisplayMetrics) mTmpMetricsField.get(resources);
-                } catch (Exception e) {
-                    Log.e("AdaptScreenUtils", "no field of mTmpMetrics in resources.");
+    private static void applyOtherDisplayMetrics(final Resources resources, final float newXdpi) {
+        if (sMetricsFields == null) {
+            sMetricsFields = new ArrayList<>();
+            Class resCls = resources.getClass();
+            Field[] declaredFields = resCls.getDeclaredFields();
+            while (declaredFields != null && declaredFields.length > 0) {
+                for (Field field : declaredFields) {
+                    if (field.getType().isAssignableFrom(DisplayMetrics.class)) {
+                        field.setAccessible(true);
+                        DisplayMetrics tmpDm = getMetricsFromField(resources, field);
+                        if (tmpDm != null) {
+                            sMetricsFields.add(field);
+                            tmpDm.xdpi = newXdpi;
+                        }
+                    }
+                }
+                resCls = resCls.getSuperclass();
+                if (resCls != null) {
+                    declaredFields = resCls.getDeclaredFields();
+                } else {
+                    break;
                 }
             }
-            isInitMiui = true;
-            return ret;
+        } else {
+            applyMetricsFields(resources, newXdpi);
         }
-        if (mTmpMetricsField == null) return null;
+    }
+
+    private static void applyMetricsFields(final Resources resources, final float newXdpi) {
+        for (Field metricsField : sMetricsFields) {
+            try {
+                DisplayMetrics dm = (DisplayMetrics) metricsField.get(resources);
+                if (dm != null) dm.xdpi = newXdpi;
+            } catch (Exception e) {
+                Log.e("AdaptScreenEx", "applyMetricsFields: " + e);
+            }
+        }
+    }
+
+    private static DisplayMetrics getMetricsFromField(final Resources resources,
+        final Field field) {
         try {
-            return (DisplayMetrics) mTmpMetricsField.get(resources);
+            return (DisplayMetrics) field.get(resources);
         } catch (Exception e) {
+            Log.e("AdaptScreenEx", "getMetricsFromField: " + e);
             return null;
         }
     }

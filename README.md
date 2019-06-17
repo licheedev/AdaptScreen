@@ -17,7 +17,7 @@
 	}
 
 	dependencies {
-	        implementation 'com.github.licheedev:AdaptScreen:0.1'
+	        implementation 'com.github.licheedev:AdaptScreen:0.2'
 	}
 ```
 
@@ -38,11 +38,36 @@ public class BaseActivity extends RxAppCompatActivity {
      * @return
      */
     protected Resources toModifyResource(Resources originalResources) {
-        // 建议先在Application里面初始化  AdaptScreenUtils.init(context);
-        return AdaptScreenUtils.adaptShorter(originalResources, 1080);
+        // 建议先在Application里面初始化  AdaptScreenEx.init(context);
+        return AdaptScreenEx.adaptShorter(originalResources, 1080); // 加入设计图短边为1080像素
     }
 }
 ```
+
+设计图上控件为100x100像素，直接填100pt
+
+```xml
+<ImageButton
+    android:id="@+id/btn_back"
+    android:layout_width="100pt"
+    android:layout_height="100pt"
+    android:background="@drawable/clickable_bg"
+    android:src="@drawable/ic_fanhui" />
+```
+
+预览配置计算器，[**在线运行**](https://c.runoob.com/compile/10)
+```java
+public class Screen {
+    public static void main(String[] args) {
+        int width = 1080;
+        int height = 1920;
+        double size = Math.sqrt(width * width + height * height) / 72;
+        System.out.println(width + "x" + height + ",PT预览尺寸=" + size);
+    }
+}
+```
+
+
 
 修改部分默认字体大小,参考 [adapt_screen_style.xml](https://github.com/licheedev/AdaptScreen/blob/master/app/src/main/res/values/adapt_screen_style.xml)
 ```xml
