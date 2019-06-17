@@ -44,16 +44,51 @@ public class BaseActivity extends RxAppCompatActivity {
 }
 ```
 
-设计图上控件为100x100像素，直接填100pt
 
 ```xml
-<ImageButton
-    android:id="@+id/btn_back"
-    android:layout_width="100pt"
-    android:layout_height="100pt"
-    android:background="@drawable/clickable_bg"
-    android:src="@drawable/ic_fanhui" />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="540pt"
+            android:layout_height="match_parent"
+            android:background="#ff8585"
+            android:text="540pt" />
+
+        <TextView
+            android:layout_width="540pt"
+            android:layout_height="match_parent"
+            android:background="#8cf1ae"
+            android:text="540pt" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="1080pt"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#9facec"
+        android:text="1080pt" />
+
+
+</LinearLayout>
 ```
+
+![横屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112620.png)
+![竖屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112558.png)
+
+
 
 预览配置计算器，[**在线运行**](https://c.runoob.com/compile/10)
 ```java
@@ -156,7 +191,3 @@ public class Screen {
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
 ```
-
-## 测试截图
-![竖屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-04-18-113445.png)
-![横屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-04-18-113522.png)

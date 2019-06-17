@@ -3,19 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="540pt"
-        android:layout_height="match_parent"
-        android:background="#ff0000"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="540pt"
+            android:layout_height="match_parent"
+            android:background="#ff8585"
+            android:text="540pt" />
+
+        <TextView
+            android:layout_width="540pt"
+            android:layout_height="match_parent"
+            android:background="#8cf1ae"
+            android:text="540pt" />
+    </LinearLayout>
 
     <TextView
-        android:layout_width="540pt"
-        android:layout_height="match_parent"
-        android:background="#239b4b"
-        android:text="Hello Android!" />
+        android:layout_width="1080pt"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#9facec"
+        android:text="1080pt" />
+
 
 </LinearLayout>
