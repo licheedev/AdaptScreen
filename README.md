@@ -5,7 +5,6 @@
 
 原文章《Android 屏幕适配终结者》
 > https://blankj.com/2018/12/18/android-adapt-screen-killer/
-> https://juejin.im/post/5c18039d5188253b7e74987e
 
 ## 添加依赖
 ```gradle
