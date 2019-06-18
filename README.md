@@ -38,7 +38,7 @@ public class BaseActivity extends RxAppCompatActivity {
      */
     protected Resources toModifyResource(Resources originalResources) {
         // 建议先在Application里面初始化  AdaptScreenEx.init(context);
-        return AdaptScreenEx.adaptShorter(originalResources, 1080); // 加入设计图短边为1080像素
+        return AdaptScreenEx.adaptShorter(originalResources, 1080); // 假如设计图短边为1080像素
     }
 }
 ```
