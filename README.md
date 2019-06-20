@@ -16,7 +16,7 @@
 	}
 
 	dependencies {
-	        implementation 'com.github.licheedev:AdaptScreen:0.2'
+	        implementation 'com.github.licheedev:AdaptScreen:0.3'
 	}
 ```
 

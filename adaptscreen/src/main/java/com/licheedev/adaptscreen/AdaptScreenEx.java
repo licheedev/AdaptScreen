@@ -89,7 +89,7 @@ public final class AdaptScreenEx {
         DisplayMetrics dm = resources.getDisplayMetrics();
         int shorter = dm.widthPixels < dm.heightPixels ? dm.widthPixels : dm.heightPixels;
         float shorterWithNav =
-            shorter * 72f + (includeNavBar ? AdaptScreenUtils.getNavBarHeight(resources) : 0);
+            (shorter + (includeNavBar ? AdaptScreenUtils.getNavBarHeight(resources) : 0)) * 72f;
         float newXdpi = shorterWithNav / designShortSize;
 
         AdaptScreenUtils.applyDisplayMetrics(resources, newXdpi);
@@ -118,7 +118,7 @@ public final class AdaptScreenEx {
         DisplayMetrics dm = resources.getDisplayMetrics();
         int longer = dm.widthPixels > dm.heightPixels ? dm.widthPixels : dm.heightPixels;
         float longerWithNav =
-            longer * 72f + (includeNavBar ? AdaptScreenUtils.getNavBarHeight(resources) : 0);
+            (longer + (includeNavBar ? AdaptScreenUtils.getNavBarHeight(resources) : 0)) * 72f;
         float newXdpi = longerWithNav / designLongerSize;
 
         AdaptScreenUtils.applyDisplayMetrics(resources, newXdpi);
