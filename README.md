@@ -22,7 +22,7 @@
 
 ## 使用参考
 
-如何预览请参考 [PREVIEW](https://github.com/licheedev/AdaptScreen/blob/master/PREVIEW.md)
+如何预览请参考 [PREVIEW.md](https://github.com/licheedev/AdaptScreen/blob/master/PREVIEW.md)
 
 ```java
 public class BaseActivity extends RxAppCompatActivity {
