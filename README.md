@@ -91,6 +91,7 @@ public class BaseActivity extends RxAppCompatActivity {
 ![竖屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112558.png)
 
 修改部分默认字体大小,参考 [adapt_screen_style.xml](https://github.com/licheedev/AdaptScreen/blob/master/app/src/main/res/values/adapt_screen_style.xml)
+
 ```xml
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
