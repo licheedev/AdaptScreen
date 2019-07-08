@@ -21,6 +21,9 @@
 ```
 
 ## 使用参考
+
+如何预览请参考 [PREVIEW](https://github.com/licheedev/AdaptScreen/blob/master/PREVIEW.md)
+
 ```java
 public class BaseActivity extends RxAppCompatActivity {
 
@@ -86,22 +89,6 @@ public class BaseActivity extends RxAppCompatActivity {
 
 ![横屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112620.png)
 ![竖屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112558.png)
-
-
-
-预览配置计算器，[**在线运行**](https://c.runoob.com/compile/10)
-```java
-public class Screen {
-    public static void main(String[] args) {
-        int width = 1080;
-        int height = 1920;
-        double size = Math.sqrt(width * width + height * height) / 72;
-        System.out.println(width + "x" + height + ",PT预览尺寸=" + size);
-    }
-}
-```
-
-
 
 修改部分默认字体大小,参考 [adapt_screen_style.xml](https://github.com/licheedev/AdaptScreen/blob/master/app/src/main/res/values/adapt_screen_style.xml)
 ```xml
