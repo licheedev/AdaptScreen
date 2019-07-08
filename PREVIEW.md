@@ -14,10 +14,11 @@ public class Screen {
 }
 ```
 
-如下图修改为750x1334（UI喜欢ios有什么办法）
+如下图修改为750x1334（这是UI喜欢用的iphone的尺寸）
 ![750x1334](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/run_java.png)
 
-计算好尺寸后，打开Android Studio的"AVD Manager"（Tools->AVD Manager）,创建一个新的配置（只需要创建配置，不用以此建立模拟器实例）
+计算好尺寸后，打开Android Studio的"AVD Manager"（Tools->AVD Manager）,创建一个新的硬件配置(Hardware Profile)
+**只需要**创建Hardware Profile，**不需要**以此配置去建立模拟器实例
 ![new profile](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/new_preview_profile.png)
 
 完事后，完全关闭Android Studio，再打开，这样才能再编辑界面看到新的配置
