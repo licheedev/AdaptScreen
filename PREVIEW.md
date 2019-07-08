@@ -15,7 +15,7 @@ public class Screen {
 ```
 
 如下图修改为750x1334（UI喜欢ios有什么办法）
-![750x1334](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/run_java.jpg)
+![750x1334](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/run_java.png)
 
 计算好尺寸后，打开Android Studio的"AVD Manager"（Tools->AVD Manager）,创建一个新的配置（只需要创建配置，不用以此建立模拟器实例）
 ![new profile](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/new_preview_profile.png)
