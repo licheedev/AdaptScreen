@@ -1,7 +1,7 @@
 # AdaptScreen [![](https://jitpack.io/v/licheedev/AdaptScreen.svg)](https://jitpack.io/#licheedev/AdaptScreen)
 屏幕适配工具，增加了适配较长/较短边功能。
 修改自
-> https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md#adaptscreen-%E7%9B%B8%E5%85%B3---adaptscreenutilsjava---demo
+> https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md#adaptscreen-%E7%9B%B8%E5%85%B3---adaptscreenutilsjava---demo
 
 原文章《Android 屏幕适配终结者》
 > https://blankj.com/2018/12/18/android-adapt-screen-killer/
