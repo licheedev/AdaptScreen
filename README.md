@@ -88,9 +88,6 @@ public class BaseActivity extends RxAppCompatActivity {
 </LinearLayout>
 ```
 
-![横屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112620.png)
-![竖屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112558.png)
-
 修改部分默认字体大小,参考 [adapt_screen_style.xml](https://github.com/licheedev/AdaptScreen/blob/master/app/src/main/res/values/adapt_screen_style.xml)
 
 ```xml
@@ -179,3 +176,8 @@ public class BaseActivity extends RxAppCompatActivity {
         <item name="android:textSize">@dimen/small_text_size</item>
     </style>
 ```
+
+
+![横屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112620.png)
+![竖屏](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/device-2019-06-17-112558.png)
+
