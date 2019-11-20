@@ -21,11 +21,10 @@
 	}
 ```
 
-## 使用参考
-**如何在`Android Studio`正确预览布局，请参考这里**
-> https://github.com/licheedev/AdaptScreen/blob/master/PREVIEW.md
-> ![Preview](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/new_preview_profile.png)
+**如何在`Android Studio`正确预览布局，请参考这里** 
+> [![Preview](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/new_preview_profile.png)](https://github.com/licheedev/AdaptScreen/blob/master/PREVIEW.md)
 
+## 使用参考
 ```java
 public class BaseActivity extends RxAppCompatActivity {
 
