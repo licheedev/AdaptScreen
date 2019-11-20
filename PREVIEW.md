@@ -24,7 +24,7 @@ public class Screen {
 
 ![new profile](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/new_preview_profile.png)
 
-完事后，完全关闭Android Studio，再打开，这样才能在编辑界面看到新的配置
+完事后，**完全关闭Android Studio**，再打开，这样才能在编辑界面看到新的配置
 
 ![应用配置1](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/select_profile1.png)
 ![应用配置2](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/select_profile2.png)
