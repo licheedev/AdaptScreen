@@ -6,8 +6,6 @@
 原文章《Android 屏幕适配终结者》
 > https://blankj.com/2018/12/18/android-adapt-screen-killer/
 
-如何在`Android Studio`正确预览布局，请参考这里
-> https://github.com/licheedev/AdaptScreen/blob/master/PREVIEW.md
 
 ## 添加依赖
 ```gradle
@@ -22,6 +20,10 @@
 	        implementation 'com.github.licheedev:AdaptScreen:1.0.0'
 	}
 ```
+
+**如何在`Android Studio`正确预览布局，请参考这里**
+> https://github.com/licheedev/AdaptScreen/blob/master/PREVIEW.md
+
 
 ## 使用参考
 
