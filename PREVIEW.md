@@ -2,22 +2,20 @@
 
 ## 创建预览配置
 
-[打开 Java在线工具](https://c.runoob.com/compile/10)，拷贝下列代码，修改设计图宽高
+[打开 在线运行工具](https://c.runoob.com/compile/2960)，拷贝下列代码，修改设计图宽高
 
-```java
-public class Screen {
-    public static void main(String[] args) {
-        int width = 1080; // 设计图宽度
-        int height = 1920; // 设计图高度
-        double size = Math.sqrt(width * width + height * height) / 72;
-        System.out.println("设计图宽高="+width + "x" + height + "像素\nPT预览尺寸=" + size + "英寸");
-    }
+```kotlin
+fun main(args: Array<String>) {
+    val width = 1080 // 设计图宽度
+    val height = 1920 // 设计图高度
+    val size = Math.sqrt(width.toDouble() * width + height * height) / 72
+    println("设计图宽高=${width}x${height}像素\nPT预览尺寸=${size}英寸")
 }
 ```
 
 如下图修改为750x1334（这是UI喜欢用的iphone的尺寸）
 
-![750x1334](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/run_java.png)
+![750x1334](https://raw.githubusercontent.com/licheedev/AdaptScreen/master/imgs/run_kotlin.png)
 
 计算好尺寸后，打开Android Studio的"AVD Manager"（Tools->AVD Manager）,创建一个新的硬件配置(Hardware Profile)
 > **只需要**创建Hardware Profile，**不需要**以此配置去建立模拟器实例
